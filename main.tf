@@ -14,6 +14,6 @@ provider "aws" {
 }
 
 module "network" {
-    source = "./network"
-    cidr_block = local.vpc_cidr
+  source     = "./network"
+  cidr_block = local.vpc_cidr
 }
