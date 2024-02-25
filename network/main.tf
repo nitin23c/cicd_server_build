@@ -48,3 +48,39 @@ resource "aws_subnet" "awsgeek0_public_subnet" {
     Name = "awsgeek0_public_subnet"
   }
 }
+
+resource "aws_route_table_association" "awsgeek0_public_subnet_assoc" {
+  count = var.public_sn_count
+  subnet_id      = aws_subnet.awsgeek0_public_subnet.*.id[count.index]
+  route_table_id = aws_route_table.awsgeek0_public_route_table.id
+}
+
+resource "aws_internet_gateway" "awsgeek0_igw" {
+  vpc_id = aws_vpc.awsgeek0_vpc.id
+
+  tags = {
+    Name = "awsgeek0_igw"
+  }
+}
+
+resource "aws_route_table" "awsgeek0_public_route_table" {
+  vpc_id = aws_vpc.awsgeek0_vpc.id
+
+    tags = {
+    Name = "awsgeek0_public_route_table"
+  }
+}
+
+resource "aws_route" "default_route" {
+  route_table_id            = aws_route_table.awsgeek0_public_route_table.id
+  destination_cidr_block    = "0.0.0.0/0"
+  gateway_id = aws_internet_gateway.awsgeek0_igw.id
+}
+
+resource "aws_default_route_table" "awsgeek0_private_route_table" {
+    default_route_table_id = aws_vpc.awsgeek0_vpc.default_route_table_id
+
+    tags = {
+        Name = "awsgeek0_private_route_table"
+    }
+}
