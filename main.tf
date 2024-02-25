@@ -16,6 +16,8 @@ provider "aws" {
 module "network" {
   source           = "./network"
   vpc_cidr         = local.vpc_cidr
+  access_ip        = var.access_ip
+  security_groups  = local.security_groups
   max_subnets      = 20
   public_sn_count  = 2
   private_sn_count = 3

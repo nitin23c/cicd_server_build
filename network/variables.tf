@@ -21,3 +21,7 @@ variable "private_sn_count" {
 }
 
 variable "max_subnets"  {}
+
+variable "security_groups" {}
+
+variable "access_ip" {}
