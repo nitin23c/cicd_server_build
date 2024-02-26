@@ -24,3 +24,12 @@ module "network" {
   public_cidrs     = [for i in range(2, 255, 2) : cidrsubnet(local.vpc_cidr, 8, i)]
   private_cidrs    = [for i in range(1, 255, 2) : cidrsubnet(local.vpc_cidr, 8, i)]
 }
+
+module "compute" {
+  source         = "./compute"
+  instance_count = 1
+  instance_type  = "t3.micro"
+  public_sg      = module.network.public_sg
+  public_subnets = module.network.public_subnets
+  vol_size       = 10
+}
