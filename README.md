@@ -1,4 +1,3 @@
-# terraform_aws_network
-Use a terraform.tfvars file to provide value to access_ip variable
+This Repo can be used to build a Jenkins Server with all the network configuration in place.
 
-This IP is the one which will be used to create ingress security rules.
+The jenkins server will come pre-installed with Jenkins, Sonarqube, Docker, Trivy
