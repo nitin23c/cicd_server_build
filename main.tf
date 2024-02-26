@@ -34,5 +34,5 @@ module "compute" {
   vol_size        = 10
   key_name        = "awsgeek0_pub_key"
   public_key_path = var.key_path
-  user_data_path = "${path.root}/userdata.tpl"
+  user_data_path  = file("userdata.sh")
 }
