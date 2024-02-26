@@ -15,9 +15,15 @@ locals {
           protocol    = "tcp"
           cidr_blocks = [var.access_ip]
         }
-        http = {
-          from        = 80
-          to          = 80
+        sonarqube = {
+          from        = 9000
+          to          = 9000
+          protocol    = "tcp"
+          cidr_blocks = [var.access_ip]
+        }
+        jenkins = {
+          from        = 8080
+          to          = 8080
           protocol    = "tcp"
           cidr_blocks = [var.access_ip]
         }

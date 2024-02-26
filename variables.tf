@@ -9,3 +9,7 @@ variable "access_ip" {
 variable "key_path" {
   type = string
 }
+
+variable "inst_type" {
+  type = string
+}

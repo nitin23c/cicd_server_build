@@ -28,11 +28,11 @@ module "network" {
 module "compute" {
   source          = "./compute"
   instance_count  = 1
-  instance_type   = "t2.micro"
+  instance_type   = var.inst_type
   public_sg       = module.network.public_sg
   public_subnets  = module.network.public_subnets
   vol_size        = 10
   key_name        = "awsgeek0_pub_key"
   public_key_path = var.key_path
-  user_data_path = ${path.root}/userdata.tpl
+  user_data_path = "${path.root}/userdata.tpl"
 }
