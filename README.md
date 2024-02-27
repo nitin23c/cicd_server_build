@@ -1,5 +1,38 @@
-This Repo can be used to build a Jenkins Server with all the network configuration in place.
 
-The jenkins server will come pre-installed with Jenkins, Sonarqube, Docker, Trivy
+# Terraform IasC for AWS to build a demo CI Server
 
-pass values of access_ip, key_path and inst_type from terraform.tfvars file
+This repository contains Terraform code that enables you to provision a network infrastructure and compute instances on AWS with pre-installed Jenkins, SonarQube, Docker, Trivy, and AWS CLI. Additionally, it includes the creation of an IAM policy and role that grants EC2 instances permissions to upload Docker images to Amazon ECR (Elastic Container Registry).
+
+## Features
+- Easily deploy network infrastructure and compute instances on AWS using Terraform.
+- Pre-configured instances with Jenkins, SonarQube, Docker, Trivy, and AWS CLI.
+- Simplified management of AWS resources and permissions.
+- Can be modified to spin up multiple instances.
+- user_data can be modified to suit ones need
+
+## Prerequisites
+Before using this Terraform code, ensure you have:
+
+- An AWS account.
+- Installed Terraform locally.
+- AWS CLI configured with appropriate credentials.
+
+## Usage
+Before using create a terraform.tfvars file in the main directory and pass values of 
+
+- access_ip
+- key_path
+- inst_type
+
+## Example of terraform.tfvars file
+
+```bash
+access_ip = "0.0.0.0/0"
+key_path  = "/location_of_your_public_key/.ssh/rsa_key.pub"
+inst_type = "t2.medium"
+```
+
+## Future enhancments
+
+- Configure an EKS cluster
+- Configure argoCD on eks cluster
