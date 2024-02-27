@@ -25,14 +25,22 @@ module "network" {
   private_cidrs    = [for i in range(1, 255, 2) : cidrsubnet(local.vpc_cidr, 8, i)]
 }
 
-module "compute" {
-  source          = "./compute"
-  instance_count  = 1
-  instance_type   = var.inst_type
-  public_sg       = module.network.public_sg
-  public_subnets  = module.network.public_subnets
-  vol_size        = 10
-  key_name        = "awsgeek0_pub_key"
-  public_key_path = var.key_path
-  user_data_path  = file("userdata.sh")
+module "ec2ecrrole" {
+  source    = "./ec2ecrrole"
+  role_name = "ec2ecrrole"
 }
+
+module "compute" {
+  source             = "./compute"
+  instance_count     = 1
+  instance_type      = var.inst_type
+  public_sg          = module.network.public_sg
+  public_subnets     = module.network.public_subnets
+  vol_size           = 10
+  key_name           = "awsgeek0_pub_key"
+  public_key_path    = var.key_path
+  user_data_path     = file("userdata.sh")
+  instance_role_name = module.ec2ecrrole.profile_name
+  depends_on         = [module.ec2ecrrole]
+}
+

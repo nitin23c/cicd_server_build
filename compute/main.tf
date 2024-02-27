@@ -42,5 +42,5 @@ resource "aws_instance" "awsgeek0_node" {
   root_block_device {
     volume_size = var.vol_size # 10
   }
-
+  iam_instance_profile = var.instance_role_name
 }
