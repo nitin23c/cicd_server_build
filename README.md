@@ -26,10 +26,15 @@ Before using create a terraform.tfvars file in the main directory and pass value
 
 ## Example of terraform.tfvars file
 
-```bash
+```HCL
 access_ip = "0.0.0.0/0"
 key_path  = "/location_of_your_public_key/.ssh/rsa_key.pub"
 inst_type = "t2.medium"
+```
+
+```diff
+- Update access_ip to your own public IP instead of 0.0.0.0/0.
+- t2.medium instance type is recommended which will incur cost
 ```
 
 ## Future enhancments
