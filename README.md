@@ -39,5 +39,5 @@ inst_type = "t2.medium"
 
 ## Future enhancments
 
-- Configure an EKS cluster
+- Deploy an EKS cluster
 - Configure argoCD on eks cluster
